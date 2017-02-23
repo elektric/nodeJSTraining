@@ -1,14 +1,11 @@
 var http = require('http');
 var BlackCards = require('./BlackCards');
+var WhiteCards = require('./WhiteCards');
 
-// http.createServer((request, response) =>{
-//   console.log("got a request:");
-//   console.log(request.headers.host);
-//   response.end("<html><body>Hello World<html><body>");
-//   console.log("Sent response");
-// }).listen(8081);
 
 let blackCards = new BlackCards('blackCards.txt');
+let whiteCards = new WhiteCards('whiteCards.txt');
+
 blackCards.readInCards().then(resolveMessage => {
 
       for (let blackCard of blackCards.allBlackCards)
@@ -17,7 +14,20 @@ blackCards.readInCards().then(resolveMessage => {
       }
       console.log(resolveMessage);
    },
-   (e) => {
-      console.log(e)
+   (err) => {
+      console.log(err)
+   }
+);
+
+whiteCards.readInCards().then(resolveMessage => {
+
+      for (let whiteCard of whiteCards.allWhiteCards)
+      {
+         console.log(whiteCard);
+      }
+      console.log(resolveMessage);
+   },
+   (err) => {
+      console.log(err);
    }
 );
