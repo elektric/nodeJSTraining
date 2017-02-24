@@ -18,7 +18,7 @@
 
 </html>
 <script>
-    var socket = io.connect('http://localhost:4200');
+    var socket = io.connect('http://' + window.location.hostname + ':4200');
     socket.on('connect', (data) => {
         socket.emit('join', 'Hello World from client');
     });
