@@ -7,14 +7,18 @@ var io = require('socket.io')(server);
 
 let blackCards = new BlackCards('blackCards.txt');
 let whiteCards = new WhiteCards('whiteCards.txt');
+let blackCardAry = [];
+let whiteCardAry = [];
+
+//Add a prototype to get a random element from the array.
+Array.prototype.randomElement = function () {
+    return this[Math.floor(Math.random() * this.length)]
+}
 
 blackCards.readInCards().then(resolveMessage => {
-
-      // for (let blackCard of blackCards.allBlackCards)
-      // {
-      //    console.log(blackCard);
-      // }
       console.log(resolveMessage);
+      blackCardAry = blackCards.allBlackCards;
+      console.log(blackCardAry.randomElement());
    },
    (err) => {
       console.log(err)
@@ -22,12 +26,9 @@ blackCards.readInCards().then(resolveMessage => {
 );
 
 whiteCards.readInCards().then(resolveMessage => {
-
-      // for (let whiteCard of whiteCards.allWhiteCards)
-      // {
-      //    console.log(whiteCard);
-      // }
       console.log(resolveMessage);
+      whiteCardAry = whiteCards.allWhiteCards;
+      console.log(whiteCardAry.randomElement());
    },
    (err) => {
       console.log(err);
