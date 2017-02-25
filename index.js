@@ -53,7 +53,29 @@ io.on('connection', function(client) {
            client.emit('broad', data);
            client.broadcast.emit('broad',data);
     });
-
 });
 
 server.listen(4200);
+
+setInterval( function() {
+
+  /*
+    our message we want to send to the client: in this case it's just a random
+    number that we generate on the server
+  */
+  var card = blackCardAry.randomElement();
+  io.emit('broad', card);
+  //console.log (msg);
+
+}, 5000);
+
+setInterval( function() {
+
+  /*
+    our message we want to send to the client: in this case it's just a random
+    number that we generate on the server
+  */
+  var card = whiteCardAry.randomElement();
+  io.emit('broad', card);
+
+}, 1000);
