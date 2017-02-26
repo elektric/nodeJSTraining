@@ -55,9 +55,13 @@ io.on('connection', function(client) {
            client.emit('broad', data);
            client.broadcast.emit('broad',data);
     });
+
+    client.on('choice', function(data) {
+           console.log(data);
+    });
 });
 
-server.listen(4200);
+server.listen(4201);
 
 setInterval( function() {
 
@@ -70,7 +74,12 @@ setInterval( function() {
 
 setInterval( function() {
 
-  var card = whiteCardAry.randomElement();
-  io.emit('whitecard', card);
+  var cardArray = [];
+  for (i = 0; i < 5; i++)
+  {
+    cardArray[i] = whiteCardAry.randomElement();
+  }
 
-}, 1000);
+  io.emit('whitecards', cardArray);
+
+}, 5000);

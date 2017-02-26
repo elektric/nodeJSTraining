@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="divTable" id="answer">
-        <div class="divTableBody" id="answerbody" >
+        <div class="divTableBody" id="answerbody">
             <div class="divTableRow">
                 <div class="divTableCell">l1 test</div>
                 <div class="divTableCell">r1 test</div>
@@ -43,11 +43,6 @@
         </div>
     </div>
 
-
-
-
-
-
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 </body>
@@ -60,11 +55,15 @@
     });
 
     socket.on('blackcard', function(data) {
-        $('#questionbody').append("<div class=\"divTableRow\"><div class=\"divTableCell\">").append(data).append("</div></div>");
+        $('#questionbody').append("<div class=\"divTableRow\"><div class=\"divTableCell\">")
+            .append(data)
+            .append("</div></div>");
     });
 
     socket.on('whitecard', function(data) {
-        $('#answerbody').append("<div class=\"divTableRow\"><div class=\"divTableCell\">").append(data).append("</div></div>");
+        $('#answerbody').append("<div class=\"divTableRow\"><div class=\"divTableCell\">")
+        .append(data)
+        .append("</div></div>");
     });
 
     $('form').submit(function(e) {
