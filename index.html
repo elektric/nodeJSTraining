@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -12,6 +12,42 @@
         <input id="chat_input" type="text">
         <input type="submit" value="Send">
     </form>
+    <div class="divTable" id="question">
+        <div class="divTableBody" id="questionbody">
+            <div class="divTableRow">
+                <div class="divTableCell">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+    <div class="divTable" id="answer">
+        <div class="divTableBody" id="answerbody" >
+            <div class="divTableRow">
+                <div class="divTableCell">l1 test</div>
+                <div class="divTableCell">r1 test</div>
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell">&nbsp;</div>
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell">&nbsp;</div>
+                <div class="divTableCell">&nbsp;</div>
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell">&nbsp;</div>
+                <div class="divTableCell">&nbsp;</div>
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell">&nbsp;</div>
+                <div class="divTableCell">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 </body>
@@ -23,8 +59,12 @@
         socket.emit('join', 'Hello World from client');
     });
 
-    socket.on('broad', function(data) {
-        $('#future').append(data + "<br/>");
+    socket.on('blackcard', function(data) {
+        $('#questionbody').append("<div class=\"divTableRow\"><div class=\"divTableCell\">").append(data).append("</div></div>");
+    });
+
+    socket.on('whitecard', function(data) {
+        $('#answerbody').append("<div class=\"divTableRow\"><div class=\"divTableCell\">").append(data).append("</div></div>");
     });
 
     $('form').submit(function(e) {
