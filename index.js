@@ -10,6 +10,9 @@ let blackCards = new BlackCards('blackCards.txt');
 let whiteCards = new WhiteCards('whiteCards.txt');
 let blackCardAry = [];
 let whiteCardAry = [];
+let answerAry = [];
+let lastWinner = "";
+
 
 //Add a prototype to get a random element from the array.
 Array.prototype.randomElement = function () {
@@ -58,7 +61,17 @@ io.on('connection', function(client) {
 
     client.on('choice', function(data) {
            console.log(data);
+           answerAry.push(data);
+           io.emit('answers', answerAry);
     });
+
+    client.on('winner', function(data) {
+           console.log("Winner: " + data);
+           lastWinner = data;
+           io.emit('lastWinner', answerAry);
+    });
+
+
 });
 
 server.listen(4201);
@@ -69,6 +82,8 @@ setInterval( function() {
   var card = blackCardAry.randomElement();
   io.emit('blackcard', card);
   //console.log (msg);
+  answerAry = [];
+  io.emit('answers', answerAry);
 
 }, 5000);
 
