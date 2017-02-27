@@ -85,7 +85,7 @@ setInterval( function() {
   answerAry = [];
   io.emit('answers', answerAry);
 
-}, 5000);
+}, 30000);
 
 setInterval( function() {
 
@@ -97,4 +97,4 @@ setInterval( function() {
 
   io.emit('whitecards', cardArray);
 
-}, 5000);
+}, 30000);
