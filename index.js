@@ -68,7 +68,7 @@ io.on('connection', function(client) {
     client.on('winner', function(data) {
            console.log("Winner: " + data);
            lastWinner = data;
-           io.emit('lastWinner', answerAry);
+           io.emit('lastWinner', data);
     });
 
 
